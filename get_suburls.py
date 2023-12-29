@@ -4,8 +4,6 @@ from bs4 import BeautifulSoup
 import ssl
 from tqdm import tqdm
 
-
-
 class WebScraper:
     def __init__(self, sub_url_size):
         ssl._create_default_https_context = ssl._create_unverified_context
@@ -42,8 +40,9 @@ class WebScraper:
         return self.inside_urls, self.failed_fetch, self.sub_url_size, total_size
 
 # Example Usage:
-urls_list = ["https://www.khaleejtimes.com"] 
-scraper = WebScraper(1)
+urls_list = ["https://www.khaleejtimes.com"] # Can add as many urls as needed, keep it below 5 for faster executing
+scraper = WebScraper(1) # KEEP IT 1, 2 or more will result in 1000's of urls.
+                        # Integration with DB will make it faster in future, as fetching is much faster than scrapping.
 inside_urls, failed_fetch, sub_url_size, total_size = scraper.get_suburls(urls_list)
 
 print("Inside URLs:", inside_urls)
